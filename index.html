@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="title" content="Happy Birthday Mahadia | Kucchupucchu">
+  <meta name="author" content="Senior Bro">
+  <title>Happy Birthday Mahadia (Kucchupucchu)! 🎂</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- ⭐ Floating Stars & Sparkles Cursor Effect -->
+  <script type="text/javascript">
+  var colours = ['#ff99c8', '#fcf6bd', '#d0f4de', '#a9def9', '#e4c1f9']; 
+  var minisize = 14; 
+  var maxisize = 24; 
+  var hearts = 35; 
+  var over_or_under = "over"; 
+
+  var x = ox = 200;
+  var y = oy = 200;
+  var swide = 800;
+  var shigh = 600;
+  var sleft = sdown = 0;
+  var herz = [];
+  var herzx = [];
+  var herzy = [];
+  var herzs = [];
+  var kiss = false;
+
+  if (typeof('addRVLoadEvent') != 'function') function addRVLoadEvent(funky) {
+    var oldonload = window.onload;
+    if (typeof(oldonload) != 'function') window.onload = funky;
+    else window.onload = function() {
+      if (oldonload) oldonload();
+      funky();
+    }
+  }
+
+  addRVLoadEvent(mwah);
+
+  function mwah() { 
+    if (document.getElementById) {
+      var i, heart;
+      for (i = 0; i < hearts; i++) {
+        heart = createDiv("auto", "auto");
+        heart.style.visibility = "hidden";
+        heart.style.zIndex = (over_or_under == "over") ? "1001" : "0";
+        heart.style.color = colours[i % colours.length];
+        heart.style.pointerEvents = "none";
+        heart.style.opacity = 0.8;
+        heart.appendChild(document.createTextNode(String.fromCharCode(9733)));
+        document.body.appendChild(heart);
+        herz[i] = heart;
+        herzy[i] = false;
+      }
+      set_scroll();
+      set_width();
+      herzle();
+    }
+  }
+
+  function herzle() {
+    var c;
+    if (Math.abs(x - ox) > 1 || Math.abs(y - oy) > 1) {
+      ox = x;
+      oy = y;
+      for (c = 0; c < hearts; c++) if (herzy[c] === false) {
+        herz[c].firstChild.nodeValue = String.fromCharCode(9733);
+        herz[c].style.left = (herzx[c] = x - minisize / 2) + "px";
+        herz[c].style.top = (herzy[c] = y - minisize) + "px";
+        herz[c].style.fontSize = minisize + "px";
+        herz[c].style.fontWeight = 'normal';
+        herz[c].style.visibility = 'visible';
+        herzs[c] = minisize;
+        break;
+      }
+    }
+    for (c = 0; c < hearts; c++) if (herzy[c] !== false) blow_me_a_kiss(c);
+    setTimeout(herzle, 40);
+  }
+
+  document.onmousedown = pucker;
+  document.onmouseup = function() { clearTimeout(kiss); };
+
+  function pucker() {
+    ox = -1;
+    oy = -1;
+    kiss = setTimeout(pucker, 100);
+  }
+
+  function blow_me_a_kiss(i) {
+    herzy[i] -= herzs[i] / minisize + i % 2;
+    herzx[i] += (i % 5 - 2) / 5;
+    if (herzy[i] < sdown - herzs[i] || herzx[i] < sleft - herzs[i] || herzx[i] > sleft + swide - herzs[i]) {
+      herz[i].style.visibility = "hidden";
+      herzy[i] = false;
+    }
+    else if (herzs[i] > minisize + 2 && Math.random() < .5 / hearts) break_my_heart(i);
+    else {
+      if (Math.random() < maxisize / herzy[i] && herzs[i] < maxisize) herz[i].style.fontSize = (++herzs[i]) + "px";
+      herz[i].style.top = herzy[i] + "px";
+      herz[i].style.left = herzx[i] + "px";
+    }
+  }
+
+  function break_my_heart(i) {
+    herz[i].firstChild.nodeValue = String.fromCharCode(10022);
+    herz[i].style.fontWeight = 'bold';
+    herzy[i] = false;
+    setTimeout(() => { if (herz[i]) herz[i].style.visibility = "hidden"; }, 400);
+  }
+
+  document.onmousemove = mouse;
+  function mouse(e) {
+    if (e) { y = e.pageY; x = e.pageX; }
+    else { set_scroll(); y = event.y + sdown; x = event.x + sleft; }
+  }
+
+  window.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 0) {
+      x = e.touches[0].pageX;
+      y = e.touches[0].pageY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 0) {
+      x = e.touches[0].pageX;
+      y = e.touches[0].pageY;
+      ox = -1;
+      oy = -1;
+    }
+  }, { passive: true });
+
+  window.onresize = set_width;
+  function set_width() {
+    swide = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    shigh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  }
+
+  window.onscroll = set_scroll;
+  function set_scroll() {
+    sdown = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    sleft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+  }
+
+  function createDiv(height, width) {
+    var div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.height = height;
+    div.style.width = width;
+    div.style.overflow = "hidden";
+    div.style.backgroundColor = "transparent";
+    return div;
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- 🎵 Background Birthday Song -->
+  <audio id="birthdaySong" loop preload="auto">
+    <source src="birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 🔒 Step 1, 2 & 3 Overlay Screen -->
+  <div id="lockScreen">
+    <!-- Step 1: Password Entry -->
+    <div class="lock-box" id="stepPassword">
+      <div class="lock-icon">🔐</div>
+      <h2>Special Surprise</h2>
+      <p>Enter the secret passcode given by your senior</p>
+      <div class="input-group">
+        <input type="password" id="passcodeInput" placeholder="Enter secret passcode..." autofocus />
+        <button id="unlockBtn">Unlock ✨</button>
+      </div>
+      <span id="errorMsg">Wrong passcode! Try again 😜</span>
+    </div>
+
+    <!-- Step 2: Countdown Screen for 4 September 2026 -->
+    <div class="lock-box" id="stepCountdown" style="display: none;">
+      <div class="lock-icon">⏳</div>
+      <h2>Hold on, Kucchupucchu!</h2>
+      <p id="countdownNote">Surprise unlocks on 4 September 2026 ✨</p>
+      <div class="gate-timer-grid">
+        <div class="gate-timer-box"><span id="gateDays">00</span><small>Days</small></div>
+        <div class="gate-timer-box"><span id="gateHours">00</span><small>Hours</small></div>
+        <div class="gate-timer-box"><span id="gateMins">00</span><small>Mins</small></div>
+        <div class="gate-timer-box"><span id="gateSecs">00</span><small>Secs</small></div>
+      </div>
+      <p class="lock-subtext">Sit back! The surprise will automatically open on your birthday! 🎈</p>
+    </div>
+
+    <!-- Step 3: Interactive Question Flow -->
+    <div class="lock-box" id="stepQuestions" style="display: none;">
+      <div class="lock-icon" id="qIcon">🎉</div>
+      <h2 id="qTitle">Question 1</h2>
+      <p id="qText">Ready for the surprise, junior? 👀</p>
+      <div class="quiz-btn-group" id="qOptions"></div>
+    </div>
+  </div>
+
+  <!-- 🎁 Main Website Wrapper -->
+  <div id="wrapper" style="display: none;">
+    <div class="flag__birthday">
+      <img src="./images/1.png" alt="flag" class="flag__left">
+      <img src="./images/1.png" alt="flag" class="flag__right">
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <div class="title">
+          <h1 class="happy">
+            <span style="--t: 4s;">H</span>
+            <span style="--t: 4.2s;">a</span>
+            <span style="--t: 4.4s;">p</span>
+            <span style="--t: 4.6s;">p</span>
+            <span style="--t: 4.8s;">y</span>
+          </h1>
+          <h1 class="birthday">
+            <span style="--t: 5s;">B</span>
+            <span style="--t: 5.2s;">i</span>
+            <span style="--t: 5.4s;">r</span>
+            <span style="--t: 5.6s;">t</span>
+            <span style="--t: 5.8s;">h</span>
+            <span style="--t: 6s;">d</span>
+            <span style="--t: 6.2s;">a</span>
+            <span style="--t: 6.4s;">y</span>
+          </h1>
+          <div class="hat">
+            <img src="./images/hat.png" alt="hat">
+          </div>
+        </div>
+
+        <div class="date__of__birth">
+          <span></span>
+        </div>
+
+        <div class="btn">
+          <button id="btn__letter">
+            Click here, Mahadia!
+            <i class="fa-regular fa-envelope"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="box__account">
+          <div class="image">
+            <img src="https://i.ibb.co/MDKL10G6/uploaded-image.jpg" alt="Mahadia">
+          </div>
+          <div class="name">
+            <i class="fa-solid fa-star"></i>
+            <span>Mahadia</span>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="balloon_one">
+            <img src="./images/balloon1.png" alt="balloon">
+          </div>
+          <div class="balloon_two">
+            <img src="./images/balloon2.png" alt="balloon">
+          </div>
+        </div>
+
+        <div class="cricle">
+          <div class="text__cricle">
+            <span style="--i: 1;">k</span>
+            <span style="--i: 2;">u</span>
+            <span style="--i: 3;">c</span>
+            <span style="--i: 4;">c</span>
+            <span style="--i: 5;">h</span>
+            <span style="--i: 6;">u</span>
+            <span style="--i: 7;">p</span>
+            <span style="--i: 8;">u</span>
+            <span style="--i: 9;">c</span>
+            <span style="--i: 10;">c</span>
+            <span style="--i: 11;">h</span>
+            <span style="--i: 12;">u</span>
+            <span style="--i: 13;">-</span>
+            <span style="--i: 14;">★</span>
+            <span style="--i: 15;">-</span>
+          </div>
+          <i class="fa-solid fa-cake-candles"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎂 Interactive Cake Section -->
+    <div class="cake-container" id="cakeSection">
+      <div class="candle" id="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+      <div class="cake">
+        <div class="layer layer-bottom"></div>
+        <div class="layer layer-top"></div>
+      </div>
+      <p class="candle-hint" id="candleHint">Make a wish and tap the flame to blow! 🕯️</p>
+    </div>
+
+    <!-- 🎁 3D Mystery Gift Box -->
+    <div class="gift-section">
+      <div class="gift-box" id="mysteryGift">
+        <div class="gift-lid" id="giftLid">
+          <div class="gift-bow">🎀</div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-ribbon-horizontal"></div>
+        </div>
+      </div>
+      <p class="gift-hint" id="giftHint">Tap 3 times to unwrap your gift! 🎁 (3 left)</p>
+
+      <!-- Mystery Popup Card -->
+      <div class="gift-reveal-card" id="giftCard">
+        <div class="card-inner">
+          <img src="https://i.ibb.co/1Fr5BVV/uploaded-image.jpg" alt="Mahadia Surprise Gift">
+          <h4>Advice from your Senior! 🌟</h4>
+          <p>Always stay cheerful, work hard for your dreams, and keep spreading positivity everywhere you go. May you achieve huge success in everything you do! 🎉</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📸 Memory Gallery -->
+    <div class="memory-gallery">
+      <h3>Memories & Moments ✨</h3>
+      <div class="polaroid-slider">
+        <div class="polaroid active">
+          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 1">
+          <p>The brightest smile! 🌸</p>
+        </div>
+        <div class="polaroid">
+          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 2">
+          <p>Junior of the year! 🎓</p>
+        </div>
+        <div class="polaroid">
+          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 3">
+          <p>Keep shining, Kucchupucchu! ⭐</p>
+        </div>
+      </div>
+      <div class="gallery-nav">
+        <button id="prevMemory">❮ Prev</button>
+        <button id="nextMemory">Next ❯</button>
+      </div>
+    </div>
+
+    <div class="decorate_star star1" style="--t: 15s;"></div>
+    <div class="decorate_star star2" style="--t: 15.2s;"></div>
+    <div class="decorate_star star3" style="--t: 15.4s;"></div>
+    <div class="decorate_star star4" style="--t: 15.6s;"></div>
+    <div class="decorate_star star5" style="--t: 15.8s;"></div>
+
+    <div class="decorate_flower--one" style="--t: 15s;">
+      <img width="20" src="./images/decorate_flower.png" alt="">
+    </div>
+    <div class="decorate_flower--two" style="--t: 15.3s;">
+      <img width="20" src="./images/decorate_flower.png" alt="">
+    </div>
+    <div class="decorate_flower--three" style="--t: 15.6s;">
+      <img width="20" src="./images/decorate_flower.png" alt="">
+    </div>
+
+    <div class="decorate_bottom">
+      <img src="./images/decorate.png" alt="" width="100">
+    </div>
+    <div class="smiley__icon">
+      <img src="./images/smiley_icon.png" alt="" width="100">
+    </div>
+
+    <!-- Letter Box Modal -->
+    <div class="box__letter">
+      <div class="letter__border">
+        <div class="letter">
+          <div class="title__letter"></div>
+          <div class="content__letter">
+            <div class="left">
+              <img id="heart__letter" src="https://media0.giphy.com/media/c76IJLufpNwSULPk77/giphy.gif" alt="">
+              <img class="heart heart_1" style="--t: 0.2s" width="20" src="./images/heart.png" alt="">
+              <img class="heart heart_2" style="--t: 0.4s" width="20" src="./images/heart.png" alt="">
+              <img class="heart heart_3" style="--t: 0.6s" width="20" src="./images/heart.png" alt="">
+              <img class="heart heart_4" style="--t: 0.8s" width="20" src="./images/heart.png" alt="">
+            </div>
+            <div class="right">
+              <div class="love__img">
+                <img src="https://media4.giphy.com/media/W4jyjmIpnw6e38B6Qc/giphy.gif" alt="" width="180">
+              </div>
+              <div class="text__letter">
+                <p></p>
+              </div>
+              <img id="mewmew" width="80" src="./images/mewmew.gif" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="close">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── 🎵 Audio Controller ───
+    const birthdaySong = document.getElementById("birthdaySong");
+    let isMusicPlaying = false;
+
+    function playBirthdaySong() {
+      if (!isMusicPlaying) {
+        birthdaySong.volume = 0.7;
+        const promise = birthdaySong.play();
+        if (promise !== undefined) {
+          promise.then(() => {
+            isMusicPlaying = true;
+          }).catch(() => {
+            document.addEventListener('click', () => {
+              if (!isMusicPlaying) {
+                birthdaySong.play();
+                isMusicPlaying = true;
+              }
+            }, { once: true });
+          });
+        }
+      }
+    }
+
+    // ─── 🔐 Authentication & Gate Passwords ───
+    const USER_PASS = "kucchupucchu";
+    const ADMIN_PASS = "admin";
+    let failedAttempts = 0;
+
+    // ─── ⏳ Target Countdown Date: 4 September 2026 ───
+    const TARGET_DATE = new Date("September 4, 2026 00:00:00").getTime();
+    let gateTimerInterval;
+
+    const questions = [
+      {
+        icon: "✨",
+        title: "Hey Mahadia!",
+        text: "Are you ready to see your birthday surprise, Kucchupucchu? 👀",
+        options: ["Yes, super excited! 😍", "Show me already! 🥳"]
+      },
+      {
+        icon: "🎂",
+        title: "Question 2",
+        text: "Do you know who the coolest junior in the whole world is? 🌟",
+        options: ["Obviously ME! 😌💅", "Mahadia of course! 🥰"]
+      },
+      {
+        icon: "🎁",
+        title: "Final Step",
+        text: "Take a deep breath and give your biggest smile... Reveal now? 🙈",
+        options: ["Open the surprise! 🚀", "Let's celebrate! 🎉"]
+      }
+    ];
+
+    function unlockWebsite() {
+      const input = document.getElementById("passcodeInput").value.trim().toLowerCase();
+      const errorMsg = document.getElementById("errorMsg");
+      const stepPassword = document.getElementById("stepPassword");
+
+      if (input === USER_PASS.toLowerCase()) {
+        failedAttempts = 0;
+        stepPassword.style.display = "none";
+        document.getElementById("stepCountdown").style.display = "block";
+        startBirthdayCountdown();
+      } else if (input === ADMIN_PASS.toLowerCase()) {
+        failedAttempts = 0;
+        stepPassword.style.display = "none";
+        showQuestions();
+      } else {
+        failedAttempts++;
+        if (failedAttempts >= 3) {
+          errorMsg.innerHTML = "Wrong passcode! 🥺<br>💡 <b>Hint:</b> <code>k....p.....</code>";
+        } else {
+          errorMsg.innerHTML = `Wrong passcode! Try again 😜 (Attempt ${failedAttempts}/3)`;
+        }
+        errorMsg.style.display = "block";
+        stepPassword.classList.add("shake");
+        setTimeout(() => stepPassword.classList.remove("shake"), 400);
+      }
+    }
+
+    // ─── Countdown Logic ───
+    function startBirthdayCountdown() {
+      function update() {
+        const now = new Date().getTime();
+        const distance = TARGET_DATE - now;
+
+        if (distance <= 0) {
+          clearInterval(gateTimerInterval);
+          document.getElementById("stepCountdown").style.display = "none";
+          showQuestions();
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("gateDays").textContent = String(days).padStart(2, '0');
+        document.getElementById("gateHours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("gateMins").textContent = String(mins).padStart(2, '0');
+        document.getElementById("gateSecs").textContent = String(secs).padStart(2, '0');
+      }
+
+      update();
+      gateTimerInterval = setInterval(update, 1000);
+    }
+
+    // ─── Questions Logic ───
+    function showQuestions() {
+      document.getElementById("stepCountdown").style.display = "none";
+      document.getElementById("stepQuestions").style.display = "block";
+      loadQuestion(0);
+    }
+
+    function loadQuestion(index) {
+      const q = questions[index];
+      document.getElementById("qIcon").textContent = q.icon;
+      document.getElementById("qTitle").textContent = q.title;
+      document.getElementById("qText").textContent = q.text;
+
+      const optionsContainer = document.getElementById("qOptions");
+      optionsContainer.innerHTML = "";
+      
+      q.options.forEach(optText => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-btn";
+        btn.textContent = optText;
+        btn.onclick = () => {
+          playBirthdaySong();
+          nextQuestion(index + 1);
+        };
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function nextQuestion(nextIdx) {
+      if (nextIdx < questions.length) {
+        const stepQuestions = document.getElementById("stepQuestions");
+        stepQuestions.classList.add("popAnim");
+        loadQuestion(nextIdx);
+        setTimeout(() => stepQuestions.classList.remove("popAnim"), 300);
+      } else {
+        revealCelebrationPage();
+      }
+    }
+
+    function revealCelebrationPage() {
+      const lockScreen = document.getElementById("lockScreen");
+      const wrapper = document.getElementById("wrapper");
+      lockScreen.style.opacity = "0";
+      setTimeout(() => {
+        lockScreen.style.display = "none";
+        wrapper.style.display = "block";
+        triggerConfetti();
+        startMainAnimations();
+      }, 450);
+    }
+
+    document.getElementById("unlockBtn").addEventListener("click", unlockWebsite);
+    document.getElementById("passcodeInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") unlockWebsite();
+    });
+
+    // ─── 🎁 Interactive Tap-to-Unwrap Gift Logic ───
+    let giftTaps = 3;
+    const mysteryGift = document.getElementById("mysteryGift");
+    const giftHint = document.getElementById("giftHint");
+    const giftCard = document.getElementById("giftCard");
+    const giftLid = document.getElementById("giftLid");
+
+    mysteryGift.addEventListener("click", function() {
+      if (giftTaps > 1) {
+        giftTaps--;
+        giftHint.textContent = `Tap ${giftTaps} more times to open! 🎁`;
+        mysteryGift.classList.add("shake");
+        setTimeout(() => mysteryGift.classList.remove("shake"), 350);
+      } else if (giftTaps === 1) {
+        giftTaps = 0;
+        giftHint.textContent = "Unwrapped with care! 🌟";
+        giftLid.classList.add("lid-open");
+        triggerConfetti();
+        setTimeout(() => {
+          giftCard.style.display = "block";
+          giftCard.classList.add("popAnim");
+        }, 300);
+      }
+    });
+
+    // ─── 🎉 Confetti Function ───
+    function triggerConfetti() {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+      setTimeout(() => {
+        confetti({ particleCount: 60, angle: 60, spread: 60, origin: { x: 0 } });
+        confetti({ particleCount: 60, angle: 120, spread: 60, origin: { x: 1 } });
+      }, 250);
+    }
+
+    // ─── Main Birthday Text Animation ───
+    function startMainAnimations() {
+      let datetxt = "04 September 2006";
+      let charArrDate = datetxt.split('');
+      let currentIndex = 0;
+      let date__of__birth = document.querySelector(".date__of__birth span");
+
+      setTimeout(function(){
+        let timeDatetxt = setInterval(function(){
+          if(currentIndex < charArrDate.length){
+            date__of__birth.textContent += charArrDate[currentIndex];
+            currentIndex++;
+          } else {
+            let i = document.createElement("i");
+            i.className = "fa-solid fa-star";
+            document.querySelector(".date__of__birth").prepend(i);
+            document.querySelector(".date__of__birth").appendChild(i.cloneNode(true));
+            clearInterval(timeDatetxt);
+          }
+        }, 100);
+      }, 12000);
+    }
+
+    // ─── Letter Popup Handler ───
+    let datatxtletter = "Happy Birthday to one of my most favorite and adorable juniors, Mahadia! (aka Kucchupucchu 😜). May your day be filled with lots of joy, sweet treats, and big laughs. Always stay curious, study well, and never stop chasing your biggest goals. As your senior, I'm always cheering for you! Have a blast! 🎉✨";
+    let titleLetter = "To Kucchupucchu";
+    let charArrDateLetter = datatxtletter.split('');
+    let charArrTitle = titleLetter.split('');
+    let currentIndexLetter = 0;
+    let currentIndexTitle = 0;
+    let text__letter = document.querySelector(".text__letter p");
+    var intervalContent, intervalTitle;
+
+    $("#btn__letter").on("click", function(){
+      triggerConfetti();
+      $(".box__letter").css("display", "flex").hide().fadeIn(300);
+      setTimeout(function(){
+        $(".letter__border").slideDown(400);
+      }, 300);
+      setTimeout(function(){
+        intervalTitle = setInterval(function(){
+          if(currentIndexTitle < charArrTitle.length){
+            document.querySelector(".title__letter").textContent += charArrTitle[currentIndexTitle];
+            let i = document.createElement("i");
+            i.className = "fa-solid fa-star";
+            document.querySelector(".title__letter").appendChild(i);
+            currentIndexTitle++;
+          } else {
+            clearInterval(intervalTitle);
+          }
+        }, 100);
+      }, 900);
+      setTimeout(function(){
+        document.querySelector("#heart__letter").classList.add("animationOp");
+        document.querySelector(".love__img").classList.add("animationOp");
+        document.querySelector("#mewmew").classList.add("animationOp");
+      }, 1400);
+      setTimeout(function(){
+        document.querySelectorAll(".heart").forEach((item)=>{
+          item.classList.add("animation");
+        });
+      }, 1800);
+      setTimeout(function(){
+        intervalContent = setInterval(function(){
+          if(currentIndexLetter < charArrDateLetter.length){
+            text__letter.textContent += charArrDateLetter[currentIndexLetter];
+            currentIndexLetter++;
+          } else {
+            clearInterval(intervalContent);
+          }
+        }, 35);
+      }, 2400);
+    });
+
+    $(".close").on("click", function(){
+      clearInterval(intervalContent);
+      clearInterval(intervalTitle);
+      document.querySelector(".title__letter").textContent = "";
+      text__letter.textContent = "";
+      currentIndexLetter = 0;
+      currentIndexTitle = 0;
+      document.querySelector("#heart__letter").classList.remove("animationOp");
+      document.querySelector(".love__img").classList.remove("animationOp");
+      document.querySelector("#mewmew").classList.remove("animationOp");
+      document.querySelectorAll(".heart").forEach((item)=>{
+        item.classList.remove("animation");
+      });
+      $(".letter__border").slideUp(200);
+      $(".box__letter").fadeOut(300);
+    });
+
+    // 🎂 Interactive Candle Blow
+    const flame = document.getElementById('flame');
+    const candleHint = document.getElementById('candleHint');
+
+    function blowCandle() {
+      if (!flame.classList.contains('extinguished')) {
+        flame.classList.add('extinguished');
+        candleHint.innerHTML = "Candle blown out! Happy Birthday Mahadia! 🥳🎉";
+        triggerConfetti();
+      }
+    }
+    document.getElementById('candle').addEventListener('click', blowCandle);
+
+    // 📸 Memory Slider
+    let curSlide = 0;
+    const slides = document.querySelectorAll('.polaroid');
+    function showSlide(idx) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    }
+    document.getElementById('nextMemory').addEventListener('click', () => {
+      curSlide = (curSlide + 1) % slides.length;
+      showSlide(curSlide);
+    });
+    document.getElementById('prevMemory').addEventListener('click', () => {
+      curSlide = (curSlide - 1 + slides.length) % slides.length;
+      showSlide(curSlide);
+    });
+  </script>
+</body>
+</html>
