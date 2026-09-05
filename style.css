@@ -418,7 +418,7 @@ img {
 }
 
 /* ─── Date of Birth & Name Pill ─────────────────────────────────────────── */
-.date__of__birth, .name {
+.date__of__birth {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -426,9 +426,6 @@ img {
     border-radius: 50px;
     margin-top: 20px;
     font-family: "Sriracha", cursive;
-}
-
-.date__of__birth {
     border: 3px solid var(--color-black);
     position: relative;
     transform: translateY(-100px);
@@ -463,24 +460,33 @@ img {
     }
 }
 
-.name {
-    position: absolute;
-    padding: 0px 30px;
-    bottom: -20px;
-    border: 3px solid var(--color-black);
-    white-space: nowrap;
-}
-
-.date__of__birth span, .name span {
+.date__of__birth span {
     font-weight: bold;
     margin: 0px 15px;
-}
-
-.date__of__birth span {
     font-size: 1.1rem;
 }
 
+/* ─── Mahadia Name Centered ─────────────────────────────────────────────── */
+.name {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-text-pink);
+    border: 3px solid var(--color-black);
+    border-radius: 50px;
+    padding: 2px 25px;
+    white-space: nowrap;
+    z-index: 10;
+    font-family: "Sriracha", cursive;
+}
+
 .name span {
+    font-weight: bold;
     font-size: 1.4rem;
 }
 
@@ -1063,6 +1069,26 @@ img {
     max-width: 180px;
     display: block;
     margin: 0 auto;
+}
+
+.content__letter .left .heart {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+}
+
+.content__letter .left .heart.animation {
+    animation: floatHeart 2s infinite ease-in-out;
+}
+
+.heart_1 { top: 20%; left: 15%; }
+.heart_2 { top: 25%; right: 15%; }
+.heart_3 { bottom: 25%; left: 20%; }
+.heart_4 { bottom: 20%; right: 20%; }
+
+@keyframes floatHeart {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-10px) scale(1.15); opacity: 1; }
 }
 
 #heart__letter.animationOp, .love__img.animationOp, #mewmew.animationOp {
