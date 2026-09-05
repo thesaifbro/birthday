@@ -391,26 +391,108 @@
       </div>
     </div>
 
-    <!-- 📸 Memory Gallery -->
+    <!-- 📸 Aesthetic Premium Polaroid Album (12 Images) -->
     <div class="memory-gallery">
-      <h3>Memories & Moments ✨</h3>
+      <div class="gallery-header">
+        <span class="gallery-badge">Memory Vault 📷</span>
+        <h3>Our Precious Moments ✨</h3>
+        <p class="gallery-sub">Swipe through the lovely chapters, Kucchupucchu!</p>
+      </div>
+
       <div class="polaroid-slider">
         <div class="polaroid active">
-          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 1">
-          <p>The brightest smile! 🌸</p>
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/Fq0Btkf5/uploaded-image.jpg" alt="Memory 1" loading="lazy">
+          </div>
+          <p>That genuine bright smile! 🌸</p>
         </div>
         <div class="polaroid">
-          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 2">
-          <p>Junior of the year! 🎓</p>
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/PG5kdVxC/uploaded-image.jpg" alt="Memory 2" loading="lazy">
+          </div>
+          <p>Pure elegance & grace ✨</p>
         </div>
         <div class="polaroid">
-          <img src="https://i.ibb.co/Wv010DsX/uploaded-image.jpg" alt="Memory 3">
-          <p>Keep shining, Kucchupucchu! ⭐</p>
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/0jZNV7Qx/uploaded-image.jpg" alt="Memory 3" loading="lazy">
+          </div>
+          <p>Forever aesthetic vibes 🌿</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/ZzHDKvcn/uploaded-image.jpg" alt="Memory 4" loading="lazy">
+          </div>
+          <p>The cutest little expressions 🙈</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/HDTtSbTF/uploaded-image.jpg" alt="Memory 5" loading="lazy">
+          </div>
+          <p>Shining bright like always ⭐</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/nsPjWckB/uploaded-image.jpg" alt="Memory 6" loading="lazy">
+          </div>
+          <p>Charming junior of the year 🎓</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/Q7QVZvY4/uploaded-image.jpg" alt="Memory 7" loading="lazy">
+          </div>
+          <p>A little dose of sweet trouble 😜</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/0j49frQJ/uploaded-image.jpg" alt="Memory 8" loading="lazy">
+          </div>
+          <p>Sweetest and softest soul 🧸</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/nMzLLRTW/uploaded-image.jpg" alt="Memory 9" loading="lazy">
+          </div>
+          <p>Making everyday memories brighter 🌼</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/JW5TqctQ/uploaded-image.jpg" alt="Memory 10" loading="lazy">
+          </div>
+          <p>Stay cheerful forever & ever 🎀</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/PG76D5CF/uploaded-image.jpg" alt="Memory 11" loading="lazy">
+          </div>
+          <p>An adorable masterpiece 💕</p>
+        </div>
+        <div class="polaroid">
+          <div class="pin">📌</div>
+          <div class="img-wrapper">
+            <img src="https://i.ibb.co/yr8bzC1/uploaded-image.jpg" alt="Memory 12" loading="lazy">
+          </div>
+          <p>Keep blooming, Kucchupucchu! 💖</p>
         </div>
       </div>
-      <div class="gallery-nav">
-        <button id="prevMemory">❮ Prev</button>
-        <button id="nextMemory">Next ❯</button>
+
+      <!-- Gallery Controls & Live Counter -->
+      <div class="gallery-footer">
+        <div class="gallery-nav">
+          <button id="prevMemory" aria-label="Previous photo">❮</button>
+          <span id="memoryCounter" class="memory-counter">1 / 12</span>
+          <button id="nextMemory" aria-label="Next photo">❯</button>
+        </div>
       </div>
     </div>
 
@@ -674,6 +756,28 @@
       }
     });
 
+    // ─── 📸 Polaroid Album Slider Logic ───
+    let curSlide = 0;
+    const slides = document.querySelectorAll('.polaroid');
+    const counter = document.getElementById('memoryCounter');
+
+    function showSlide(idx) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      if (counter) {
+        counter.textContent = `${idx + 1} / ${slides.length}`;
+      }
+    }
+
+    document.getElementById('nextMemory').addEventListener('click', () => {
+      curSlide = (curSlide + 1) % slides.length;
+      showSlide(curSlide);
+    });
+
+    document.getElementById('prevMemory').addEventListener('click', () => {
+      curSlide = (curSlide - 1 + slides.length) % slides.length;
+      showSlide(curSlide);
+    });
+
     // ─── 🎉 Confetti Function ───
     function triggerConfetti() {
       confetti({
@@ -790,21 +894,6 @@
       }
     }
     document.getElementById('candle').addEventListener('click', blowCandle);
-
-    // 📸 Memory Slider
-    let curSlide = 0;
-    const slides = document.querySelectorAll('.polaroid');
-    function showSlide(idx) {
-      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-    }
-    document.getElementById('nextMemory').addEventListener('click', () => {
-      curSlide = (curSlide + 1) % slides.length;
-      showSlide(curSlide);
-    });
-    document.getElementById('prevMemory').addEventListener('click', () => {
-      curSlide = (curSlide - 1 + slides.length) % slides.length;
-      showSlide(curSlide);
-    });
   </script>
 </body>
 </html>
