@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Sriracha&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
 
 * {
     padding: 0;
@@ -10,13 +11,13 @@
 }
 
 :root {
-    --color-pink: #feecea;
-    --color-white: #fff;
-    --color-black: #333;
-    --color-text-pink: #ff7882;
-    --color-heart: #F61F1F;
-    --color-bg-letter: #fff8e4;
-    --color-border: #DACCBF;
+    --color-pink: #fff0f3;
+    --color-white: #ffffff;
+    --color-black: #2b2024;
+    --color-text-pink: #ff758f;
+    --color-accent: #ff4d6d;
+    --color-bg-letter: #fffaf0;
+    --color-border: #f7cad0;
 }
 
 html, body {
@@ -29,7 +30,7 @@ html, body {
 body {
     position: relative;
     font-size: 16px;
-    background-image: linear-gradient(var(--color-pink), var(--color-pink));
+    background: radial-gradient(circle at 10% 20%, #fff5f7 0%, #fee1e8 90%);
 }
 
 /* ─── 🔒 Step 1, 2 & 3: Overlay Gate Styling ───────────────────────────── */
@@ -40,7 +41,8 @@ body {
     width: 100%;
     height: 100%;
     height: 100dvh;
-    background: radial-gradient(circle, #ffe6eb 0%, #ffccd5 100%);
+    background: radial-gradient(circle, rgba(255, 240, 243, 0.95) 0%, rgba(255, 204, 213, 0.95) 100%);
+    backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,38 +52,39 @@ body {
 }
 
 .lock-box {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.96);
     border: 3px solid var(--color-black);
-    border-radius: 24px;
-    padding: 30px 20px;
+    border-radius: 28px;
+    padding: 34px 22px;
     width: min(92%, 360px);
     text-align: center;
     box-shadow: 6px 8px 0px var(--color-black);
 }
 
 .lock-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-size: 3.2rem;
+    margin-bottom: 8px;
+    animation: floatHeart 2.5s infinite ease-in-out;
 }
 
 .lock-box h2 {
     font-family: 'Titan One', sans-serif;
     color: var(--color-text-pink);
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     margin-bottom: 8px;
+    letter-spacing: 0.5px;
 }
 
 .lock-box p {
     font-family: 'Sriracha', cursive;
-    color: #555;
+    color: #666;
     font-size: 0.95rem;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .lock-subtext {
     font-size: 0.85rem !important;
-    color: #777 !important;
+    color: #888 !important;
     margin-top: 15px !important;
     margin-bottom: 0 !important;
 }
@@ -89,31 +92,33 @@ body {
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
 #passcodeInput {
     width: 100%;
-    padding: 12px 16px;
+    padding: 13px 18px;
     border: 3px solid var(--color-black);
     border-radius: 50px;
     font-size: 1rem;
     outline: none;
     text-align: center;
     font-family: 'Sriracha', cursive;
+    background: #fff;
+    transition: border-color 0.2s;
 }
 
 #passcodeInput:focus {
-    border-color: var(--color-text-pink);
+    border-color: var(--color-accent);
 }
 
 #unlockBtn {
-    background-color: var(--color-text-pink);
+    background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
     color: #fff;
     border: 3px solid var(--color-black);
     border-radius: 50px;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 11px 20px;
+    font-size: 1.05rem;
     font-family: 'Titan One', sans-serif;
     cursor: pointer;
     box-shadow: 2px 4px 0px var(--color-black);
@@ -127,18 +132,18 @@ body {
 
 #errorMsg {
     display: none;
-    color: #ff0055;
+    color: #e63946;
     font-family: 'Sriracha', cursive;
     font-size: 0.85rem;
-    margin-top: 12px;
+    margin-top: 14px;
     font-weight: bold;
     line-height: 1.4;
 }
 
 #errorMsg code {
-    background: #ffe0e6;
-    padding: 2px 6px;
-    border-radius: 4px;
+    background: #ffe3e8;
+    padding: 2px 8px;
+    border-radius: 6px;
     color: #d90429;
     font-size: 0.95rem;
     font-weight: bold;
@@ -155,7 +160,6 @@ body {
     40%, 80% { transform: translateX(8px); }
 }
 
-/* ─── Question Buttons ─────────────────────────────────────────────────── */
 .quiz-btn-group {
     display: flex;
     flex-direction: column;
@@ -168,7 +172,7 @@ body {
     color: var(--color-black);
     border: 2.5px solid var(--color-black);
     border-radius: 50px;
-    padding: 12px 16px;
+    padding: 13px 18px;
     font-size: 0.95rem;
     font-family: 'Sriracha', cursive;
     cursor: pointer;
@@ -177,7 +181,7 @@ body {
 }
 
 .quiz-btn:hover {
-    background-color: var(--color-text-pink);
+    background: var(--color-text-pink);
     color: #fff;
     border-color: var(--color-black);
 }
@@ -196,7 +200,7 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* ─── Gate Timer Grid (Countdown) ───────────────────────────────────────── */
+/* ─── Countdown Gate Grid ──────────────────────────────────────────────── */
 .gate-timer-grid {
     display: flex;
     justify-content: space-between;
@@ -207,8 +211,8 @@ body {
 .gate-timer-box {
     flex: 1;
     background: var(--color-text-pink);
-    border: 2px solid var(--color-black);
-    border-radius: 12px;
+    border: 2.5px solid var(--color-black);
+    border-radius: 14px;
     padding: 8px 2px;
     color: #fff;
     display: flex;
@@ -227,7 +231,7 @@ body {
     font-weight: bold;
 }
 
-/* ─── Main Wrapper Background ───────────────────────────────────────────── */
+/* ─── Main Wrapper ─────────────────────────────────────────────────────── */
 #wrapper {
     position: relative;
     width: 100%;
@@ -235,8 +239,8 @@ body {
     min-height: 100dvh;
     background-color: transparent;
     background-image: 
-        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 76%, transparent 77%, transparent), 
-        linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 76%, transparent 77%, transparent);
+        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.7) 25%, rgba(255, 255, 255, 0.7) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.7) 75%, rgba(255, 255, 255, 0.7) 76%, transparent 77%, transparent), 
+        linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.7) 25%, rgba(255, 255, 255, 0.7) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.7) 75%, rgba(255, 255, 255, 0.7) 76%, transparent 77%, transparent);
     background-size: 80px 80px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -249,7 +253,7 @@ img {
     display: block;
 }
 
-/* ─── 🚩 Vector Buntings / Banner ────────────────────────────────────────── */
+/* ─── 🚩 Buntings ────────────────────────────────────────────────────────── */
 .flag__birthday {
     width: 100%;
     display: flex;
@@ -269,12 +273,12 @@ img {
     to { transform: translateY(0); }
 }
 
-/* ─── Main Content ───────────────────────────────────────────────────────── */
+/* ─── Main Header / Hero Section ────────────────────────────────────────── */
 .content {
     width: 100%;
     position: relative;
     display: flex;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     align-items: center;
     justify-content: space-around;
 }
@@ -305,10 +309,11 @@ img {
 #btn__letter {
     position: relative;
     margin-top: 25px;
-    background-color: var(--color-text-pink);
+    background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
     outline: none;
-    padding: 8px 24px;
-    font-size: 1.1rem;
+    padding: 10px 26px;
+    font-size: 1.15rem;
+    color: #fff;
     border-radius: 50px;
     border: 3px solid var(--color-black);
     font-family: "Sriracha", cursive;
@@ -317,11 +322,13 @@ img {
     justify-content: center;
     cursor: pointer;
     z-index: 2;
-    transition: all .3s ease-in-out;
+    box-shadow: 2px 4px 0px var(--color-black);
+    transition: all .25s ease-in-out;
 }
 
 #btn__letter:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
+    box-shadow: none;
 }
 
 #btn__letter i {
@@ -329,23 +336,12 @@ img {
 }
 
 #btn__letter:hover {
-    border-color: #ffbe0b;
-    background-color: #ff9d00;
-    color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+    transform: translateY(-2px);
+    box-shadow: 2px 6px 0px var(--color-black);
 }
 
-#btn__letter:hover i {
-    animation: rotateLetter 1s infinite linear;
-}
-
-@keyframes rotateLetter {
-    0%, 50%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(12deg); }
-    75% { transform: rotate(-12deg); }
-}
-
-/* ─── Title Text ─────────────────────────────────────────────────────────── */
+/* ─── Typography (Happy Birthday) ───────────────────────────────────────── */
 .title {
     position: relative;
     width: 100%;
@@ -353,7 +349,7 @@ img {
     justify-content: center;
     align-items: center;
     font-family: "Titan One", sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
     flex-direction: column;
     perspective: 1000px;
 }
@@ -365,7 +361,7 @@ img {
         -4px 4px var(--color-black), 
         4px -4px var(--color-black), 
         -4px -4px var(--color-black), 
-        4px 8px 0 var(--color-black);
+        5px 8px 0px var(--color-black);
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -395,7 +391,7 @@ img {
     color: var(--color-text-pink);
 }
 
-/* ─── 🎩 Vector Birthday Hat ─────────────────────────────────────────────── */
+/* ─── 🎩 Hat ─────────────────────────────────────────────────────────────── */
 .title .hat {
     position: absolute;
     right: 15%;
@@ -422,7 +418,7 @@ img {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--color-text-pink);
+    background: #fff;
     border-radius: 50px;
     margin-top: 20px;
     font-family: "Sriracha", cursive;
@@ -433,6 +429,7 @@ img {
     opacity: 0;
     visibility: hidden;
     width: 0px;
+    box-shadow: 3px 4px 0px var(--color-black);
     animation: dateOfBirth 5s 9s forwards;
 }
 
@@ -456,17 +453,18 @@ img {
         opacity: 1;
         visibility: visible;
         width: clamp(240px, 80%, 320px);
-        height: 50px;
+        height: 52px;
     }
 }
 
 .date__of__birth span {
     font-weight: bold;
     margin: 0px 15px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    color: #ff4d6d;
 }
 
-/* ─── Mahadia Name Centered ─────────────────────────────────────────────── */
+/* ─── Centered Name Tag ─────────────────────────────────────────────────── */
 .name {
     position: absolute;
     bottom: -20px;
@@ -476,26 +474,28 @@ img {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: var(--color-text-pink);
+    background: #fff;
     border: 3px solid var(--color-black);
     border-radius: 50px;
-    padding: 2px 25px;
+    padding: 3px 26px;
     white-space: nowrap;
     z-index: 10;
     font-family: "Sriracha", cursive;
+    box-shadow: 3px 4px 0px var(--color-black);
 }
 
 .name span {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
+    color: var(--color-black);
 }
 
 .name .fa-star {
     color: #ffbe0b;
-    filter: drop-shadow(0 0 3px #ffbe0b);
+    filter: drop-shadow(0 0 2px #ffbe0b);
 }
 
-/* ─── Profile Image Box ─────────────────────────────────────────────────── */
+/* ─── Profile Avatar ────────────────────────────────────────────────────── */
 .right .box__account {
     position: relative;
     transform: translateY(700px);
@@ -516,6 +516,7 @@ img {
     align-items: center;
     justify-content: center;
     border: 6px solid var(--color-black);
+    box-shadow: 0 10px 25px rgba(255, 117, 143, 0.35);
 }
 
 .content .right .image img {
@@ -524,7 +525,7 @@ img {
     object-fit: cover;
 }
 
-/* ─── Circle Stamp ──────────────────────────────────────────────────────── */
+/* ─── Rotating Badge ────────────────────────────────────────────────────── */
 .cricle {
     position: absolute;
     top: 0;
@@ -544,8 +545,8 @@ img {
 }
 
 .text__cricle {
-    width: 90px;
-    height: 90px;
+    width: 92px;
+    height: 92px;
     background-color: var(--color-text-pink);
     border-radius: 50%;
     border: 4px solid var(--color-black);
@@ -575,11 +576,11 @@ img {
 .cricle .fa-cake-candles {
     position: absolute;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
 }
 
-/* ─── 🎈 Vector Balloons ─────────────────────────────────────────────────── */
+/* ─── Balloons ──────────────────────────────────────────────────────────── */
 .right .balloon_one {
     position: absolute;
     top: -50px;
@@ -605,12 +606,12 @@ img {
     50% { transform-origin: bottom left; transform: rotate(0deg); }
 }
 
-/* ─── 🎂 Cake & Candle ──────────────────────────────────────────────────── */
+/* ─── 🎂 Cake ───────────────────────────────────────────────────────────── */
 .cake-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 40px auto 10px;
+    margin: 45px auto 10px;
     position: relative;
     z-index: 5;
 }
@@ -630,8 +631,8 @@ img {
 .layer-bottom {
     bottom: 0;
     height: 45px;
-    background: #f7a8b8;
-    border-radius: 8px 8px 0 0;
+    background: #ffb3c1;
+    border-radius: 10px 10px 0 0;
 }
 
 .layer-top {
@@ -640,7 +641,7 @@ img {
     width: 110px;
     height: 35px;
     background: #fff;
-    border-radius: 8px 8px 0 0;
+    border-radius: 10px 10px 0 0;
 }
 
 .candle {
@@ -681,93 +682,110 @@ img {
 .candle-hint {
     font-family: 'Sriracha', cursive;
     font-size: 0.95rem;
-    color: #ff3d5a;
+    color: var(--color-accent);
     margin-top: 12px;
     font-weight: bold;
     text-align: center;
 }
 
-/* ─── ⏱️ Age Calculator & Lifetime Counter ────────────────────────────── */
+/* ─── ⏱️ Aesthetic Age Milestone Card ──────────────────────────────────── */
 .age-tracker-section {
-    width: min(92%, 460px);
-    background: rgba(255, 255, 255, 0.9);
-    border: 3px solid var(--color-black);
-    border-radius: 20px;
-    margin: 30px auto;
-    padding: 20px 15px;
+    width: min(92%, 480px);
+    background: #ffffff;
+    border: 3.5px solid var(--color-black);
+    border-radius: 26px;
+    margin: 40px auto;
+    padding: 24px 18px;
     text-align: center;
-    box-shadow: 5px 6px 0px var(--color-black);
+    box-shadow: 6px 8px 0px var(--color-black);
     position: relative;
     z-index: 7;
 }
 
+.section-tag {
+    display: inline-block;
+    background: #ffe3e8;
+    color: var(--color-accent);
+    border: 2px solid var(--color-black);
+    border-radius: 30px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 1.2px;
+    padding: 3px 14px;
+    margin-bottom: 8px;
+    box-shadow: 2px 2px 0px var(--color-black);
+}
+
 .age-tracker-section h3 {
     font-family: 'Titan One', sans-serif;
-    color: var(--color-text-pink);
-    font-size: 1.4rem;
-    margin-bottom: 4px;
+    color: var(--color-black);
+    font-size: 1.45rem;
+    margin-bottom: 2px;
 }
 
 .age-subtitle {
     font-family: 'Sriracha', cursive;
-    color: #666;
+    color: #777;
     font-size: 0.9rem;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .age-timer-grid {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .age-box {
-    background: var(--color-text-pink);
+    background: linear-gradient(180deg, #ff758f 0%, #ff4d6d 100%);
     color: #fff;
-    border: 2px solid var(--color-black);
-    border-radius: 12px;
-    padding: 8px 10px;
-    min-width: 65px;
+    border: 2.5px solid var(--color-black);
+    border-radius: 16px;
+    padding: 10px 12px;
+    min-width: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 2px 3px 0px var(--color-black);
+    box-shadow: 2px 4px 0px var(--color-black);
 }
 
 .age-box span {
     font-family: 'Titan One', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
 }
 
 .age-box small {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 .age-quote {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.15rem;
-    color: #e63946;
-    margin-top: 15px;
+    font-size: 1.35rem;
+    color: #c9184a;
+    margin-top: 16px;
     font-weight: bold;
 }
 
-/* ─── 🎁 3D Mystery Gift Box Section ────────────────────────────────────── */
+/* ─── 🎁 3D Mystery Gift Box ────────────────────────────────────────────── */
 .gift-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 35px auto 25px;
+    margin: 40px auto 25px;
     position: relative;
     z-index: 8;
 }
 
 .gift-box {
     position: relative;
-    width: 100px;
-    height: 90px;
+    width: 105px;
+    height: 95px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -780,10 +798,10 @@ img {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 70px;
-    background: #ff477e;
+    height: 72px;
+    background: #ff4d6d;
     border: 3px solid var(--color-black);
-    border-radius: 0 0 12px 12px;
+    border-radius: 0 0 16px 16px;
     box-shadow: 4px 6px 0px rgba(0,0,0,0.15);
     overflow: hidden;
 }
@@ -792,7 +810,7 @@ img {
     position: absolute;
     left: 50%;
     top: 0;
-    width: 18px;
+    width: 20px;
     height: 100%;
     background: #ffbe0b;
     transform: translateX(-50%);
@@ -805,7 +823,7 @@ img {
     top: 50%;
     left: 0;
     width: 100%;
-    height: 18px;
+    height: 20px;
     background: #ffbe0b;
     transform: translateY(-50%);
     border-top: 2px solid var(--color-black);
@@ -816,11 +834,11 @@ img {
     position: absolute;
     top: 5px;
     left: -6px;
-    width: 112px;
-    height: 24px;
-    background: #ff3366;
+    width: 117px;
+    height: 26px;
+    background: #ff758f;
     border: 3px solid var(--color-black);
-    border-radius: 6px;
+    border-radius: 8px;
     z-index: 2;
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
@@ -830,19 +848,19 @@ img {
 
 .gift-bow {
     position: absolute;
-    top: -24px;
-    font-size: 2rem;
+    top: -26px;
+    font-size: 2.2rem;
 }
 
 .gift-lid.lid-open {
-    transform: translateY(-50px) rotate(-25deg);
-    opacity: 0.85;
+    transform: translateY(-55px) rotate(-25deg);
+    opacity: 0.9;
 }
 
 .gift-hint {
     font-family: 'Sriracha', cursive;
     font-size: 0.95rem;
-    color: #ff3d5a;
+    color: var(--color-accent);
     margin-top: 15px;
     font-weight: bold;
     text-align: center;
@@ -850,21 +868,21 @@ img {
 
 .gift-reveal-card {
     display: none;
-    width: min(90%, 360px);
+    width: min(90%, 380px);
     background: #fff;
     border: 3px solid var(--color-black);
-    border-radius: 20px;
-    padding: 15px;
-    margin-top: 15px;
+    border-radius: 24px;
+    padding: 18px;
+    margin-top: 16px;
     text-align: center;
     box-shadow: 6px 8px 0px var(--color-black);
 }
 
 .gift-reveal-card img {
     width: 100%;
-    height: 200px;
+    height: 210px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 16px;
     border: 2px solid var(--color-black);
     margin-bottom: 12px;
 }
@@ -872,65 +890,53 @@ img {
 .gift-reveal-card h4 {
     font-family: 'Titan One', sans-serif;
     color: var(--color-text-pink);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     margin-bottom: 6px;
 }
 
 .gift-reveal-card p {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     color: #333;
     line-height: 1.4;
 }
 
-/* ─── 📸 Aesthetic Polaroid Album (12 Photos) ────────────────────────────── */
+/* ─── 📸 Aesthetic Memory Album (12 Photos) ─────────────────────────────── */
 .memory-gallery {
-    width: min(92%, 400px);
-    margin: 40px auto 80px;
+    width: min(92%, 420px);
+    margin: 45px auto 85px;
     text-align: center;
     position: relative;
     z-index: 7;
 }
 
-.gallery-badge {
-    background: #fff;
-    border: 2px solid var(--color-black);
-    border-radius: 20px;
-    padding: 3px 12px;
-    font-family: 'Sriracha', cursive;
-    font-size: 0.75rem;
-    color: var(--color-text-pink);
-    font-weight: bold;
-    box-shadow: 2px 2px 0px var(--color-black);
-}
-
 .memory-gallery h3 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.3rem;
-    color: #ff3d5a;
-    margin: 8px 0 2px;
+    font-size: 2.4rem;
+    color: var(--color-accent);
+    margin: 6px 0 2px;
 }
 
 .gallery-sub {
     font-family: 'Sriracha', cursive;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .polaroid-slider {
     position: relative;
-    min-height: 440px;
+    min-height: 450px;
 }
 
 .polaroid {
     display: none;
     position: relative;
-    background: #fff;
+    background: #ffffff;
     padding: 14px 14px 22px;
-    border-radius: 14px;
-    border: 3px solid var(--color-black);
-    box-shadow: 7px 10px 0px rgba(0,0,0,0.18);
+    border-radius: 20px;
+    border: 3.5px solid var(--color-black);
+    box-shadow: 7px 10px 0px var(--color-black);
     transform: rotate(-1.5deg);
     transition: all 0.3s ease;
 }
@@ -951,10 +957,10 @@ img {
 
 .polaroid .pin {
     position: absolute;
-    top: -12px;
+    top: -14px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     z-index: 2;
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
 }
@@ -962,10 +968,10 @@ img {
 .polaroid .img-wrapper {
     width: 100%;
     height: 330px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 2px solid #222;
     overflow: hidden;
-    background-color: #f7f7f7;
+    background-color: #faf0f2;
 }
 
 .polaroid img {
@@ -977,14 +983,14 @@ img {
 
 .polaroid p {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.45rem;
-    color: #2b2b2b;
+    font-size: 1.55rem;
+    color: #2b2024;
     margin-top: 14px;
     font-weight: bold;
 }
 
 .gallery-footer {
-    margin-top: 18px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
@@ -992,12 +998,12 @@ img {
 .gallery-nav {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 6px 14px;
+    gap: 14px;
+    background: #ffffff;
+    padding: 7px 18px;
     border-radius: 40px;
     border: 2.5px solid var(--color-black);
-    box-shadow: 3px 4px 0px var(--color-black);
+    box-shadow: 3px 5px 0px var(--color-black);
 }
 
 .gallery-nav button {
@@ -1005,13 +1011,13 @@ img {
     color: #fff;
     border: 2px solid var(--color-black);
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: bold;
     box-shadow: 1px 2px 0px var(--color-black);
     transition: transform 0.15s ease;
@@ -1025,28 +1031,8 @@ img {
 .memory-counter {
     font-family: 'Titan One', sans-serif;
     color: var(--color-text-pink);
-    font-size: 1rem;
-    min-width: 60px;
-}
-
-/* ─── Decorate Stars ────────────────────────────────────────────────────── */
-.decorate_star {
-    position: absolute;
-    transform: scale(0);
-    background-color: var(--color-black);
-    clip-path: polygon(0 50%, 35% 35%, 50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%);
-    animation: scaleCricle 3s var(--t) forwards, scaleStar 2s 16s infinite ease-in-out;
-}
-
-.decorate_star.star1 { width: 18px; height: 18px; top: 12%; left: 20%; }
-.decorate_star.star2 { width: 15px; height: 18px; top: 8%; right: 25%; }
-.decorate_star.star3 { width: 14px; height: 14px; top: 40%; left: 45%; }
-.decorate_star.star4 { width: 16px; height: 16px; bottom: 10%; left: 5%; }
-.decorate_star.star5 { width: 16px; height: 16px; bottom: 15%; right: 30%; }
-
-@keyframes scaleStar {
-    25% { transform: scale(0.8); }
-    50% { transform: scale(1.1); }
+    font-size: 1.05rem;
+    min-width: 65px;
 }
 
 /* ─── Letter Popup Modal ────────────────────────────────────────────────── */
@@ -1054,7 +1040,8 @@ img {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(43, 32, 36, 0.65);
+    backdrop-filter: blur(5px);
     width: 100%;
     height: 100%;
     z-index: 1000;
@@ -1066,28 +1053,30 @@ img {
 
 .box__letter .letter__border {
     position: relative;
-    width: min(92vw, 750px);
+    width: min(92vw, 720px);
     max-height: 90vh;
     background-color: var(--color-white);
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+    border-radius: 26px;
+    padding: 16px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px;
     display: flex;
     flex-direction: column;
+    border: 3px solid var(--color-black);
 }
 
 .letter__border .close {
     position: absolute;
     right: -10px;
     top: -10px;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     background-color: var(--color-white);
+    border: 2px solid var(--color-black);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+    box-shadow: 2px 2px 0px var(--color-black);
     cursor: pointer;
     z-index: 20;
     font-weight: bold;
@@ -1097,18 +1086,20 @@ img {
     width: 100%;
     height: 100%;
     background-color: var(--color-bg-letter);
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 16px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border: 1.5px dashed var(--color-border);
 }
 
 .letter__border .letter .title__letter {
     text-align: center;
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    color: var(--color-accent);
     flex-shrink: 0;
 }
 
@@ -1128,7 +1119,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 2px solid var(--color-border);
+    border-right: 2px dashed var(--color-border);
 }
 
 .content__letter .left #heart__letter {
@@ -1141,7 +1132,7 @@ img {
 
 .content__letter .left .heart {
     position: absolute;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     opacity: 0;
 }
 
@@ -1155,7 +1146,7 @@ img {
 .heart_4 { bottom: 20%; right: 20%; }
 
 @keyframes floatHeart {
-    0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
     50% { transform: translateY(-10px) scale(1.15); opacity: 1; }
 }
 
@@ -1177,9 +1168,10 @@ img {
 
 .content__letter .right .text__letter {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.15rem;
-    line-height: 1.4;
+    font-size: 1.25rem;
+    line-height: 1.45;
     word-break: break-word;
+    color: #333;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1205,8 +1197,8 @@ img {
     }
 
     .title {
-        font-size: 2.2rem;
-        letter-spacing: 2px;
+        font-size: 2.3rem;
+        letter-spacing: 1px;
     }
 
     .title .hat {
@@ -1231,14 +1223,14 @@ img {
     }
 
     .text__cricle {
-        width: 70px;
-        height: 70px;
+        width: 74px;
+        height: 74px;
         border-width: 3px;
     }
 
     .text__cricle span {
         font-size: 0.52rem;
-        transform-origin: 0 32px;
+        transform-origin: 0 34px;
     }
 
     .right .balloon_one {
@@ -1247,8 +1239,8 @@ img {
     }
 
     .right .balloon_one svg, .right .balloon_two svg {
-        width: 55px;
-        height: 95px;
+        width: 60px;
+        height: 100px;
     }
 
     .right .balloon_two {
@@ -1267,7 +1259,7 @@ img {
     }
 
     .letter__border .letter .title__letter {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .letter__border .letter .content__letter {
@@ -1292,7 +1284,7 @@ img {
     }
 
     .content__letter .right .text__letter {
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 5px;
         text-align: center;
     }
@@ -1300,25 +1292,25 @@ img {
 
 @media screen and (max-width: 420px) {
     .title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
     .name span {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 
     .date__of__birth span {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .content .right .image {
-        width: 180px;
-        height: 180px;
+        width: 190px;
+        height: 190px;
     }
 
     #btn__letter {
-        font-size: 0.95rem;
-        padding: 6px 18px;
+        font-size: 1rem;
+        padding: 8px 20px;
     }
 
     .gate-timer-box {
@@ -1332,10 +1324,10 @@ img {
 
     .age-box {
         min-width: 54px;
-        padding: 6px 4px;
+        padding: 8px 6px;
     }
 
     .age-box span {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
 }
