@@ -249,24 +249,31 @@ img {
     display: block;
 }
 
-/* ─── 🚩 Vector Buntings / Banner ────────────────────────────────────────── */
+/* ─── 🚩 Flags ───────────────────────────────────────────────────────────── */
 .flag__birthday {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    pointer-events: none;
-    transform: translateY(-120px);
-    animation: translateYFlag 1.2s 1s forwards ease-out;
-}
-
-.bunting-banner {
+    justify-content: space-between;
     width: 100%;
-    max-width: 1050px;
-    height: 70px;
+    transform: translateY(-200px);
+    animation: translateYFlag 1.5s 2s forwards;
+    pointer-events: none;
 }
 
 @keyframes translateYFlag {
-    to { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.flag__birthday img {
+    width: clamp(120px, 20vw, 220px);
+    object-fit: contain;
+}
+
+.flag__birthday .flag__left {
+    transform: rotate(-10deg) translate(-20px, 30px);
+}
+
+.flag__birthday .flag__right {
+    transform: rotate(10deg) translate(20px, 30px) scaleX(-1);
 }
 
 /* ─── Main Content ───────────────────────────────────────────────────────── */
@@ -395,7 +402,7 @@ img {
     color: var(--color-text-pink);
 }
 
-/* ─── 🎩 Vector Birthday Hat ─────────────────────────────────────────────── */
+/* ─── 🎩 Hat ─────────────────────────────────────────────────────────────── */
 .title .hat {
     position: absolute;
     right: 15%;
@@ -403,6 +410,13 @@ img {
     transform: rotate(-40deg);
     z-index: -1;
     animation: topHat 4s 7s forwards ease;
+    width: 80px;
+}
+
+.title .hat img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 @keyframes topHat {
@@ -579,12 +593,13 @@ img {
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
 }
 
-/* ─── 🎈 Vector Balloons ─────────────────────────────────────────────────── */
+/* ─── 🎈 Custom Balloons ─────────────────────────────────────────────────── */
 .right .balloon_one {
     position: absolute;
     top: -50px;
     left: -50px;
     animation: balloon1 2.5s infinite ease-in-out;
+    width: clamp(70px, 12vw, 110px);
 }
 
 @keyframes balloon1 {
@@ -598,6 +613,7 @@ img {
     right: -45px;
     z-index: -1;
     animation: balloon2 2.5s infinite ease-in-out;
+    width: clamp(70px, 12vw, 110px);
 }
 
 @keyframes balloon2 {
@@ -1214,6 +1230,26 @@ img {
     color: #8b4513;
 }
 
+/* ─── 🌸 Custom Flowers & Decor Bottom ───────────────────────────────────── */
+.decorate_flower--one, .decorate_flower--two, .decorate_flower--three {
+    position: absolute;
+    transform: scale(0);
+    animation: scaleCricle 3s var(--t, 15s) forwards ease-in-out;
+    pointer-events: none;
+}
+
+.decorate_flower--one { top: 35%; left: 5%; }
+.decorate_flower--two { top: 30%; right: 40%; }
+.decorate_flower--three { top: 20%; right: 15%; }
+
+.decorate_bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* ─── Decorate Stars ────────────────────────────────────────────────────── */
 .decorate_star {
     position: absolute;
@@ -1326,7 +1362,6 @@ img {
 
 .content__letter .left .heart {
     position: absolute;
-    font-size: 1.2rem;
     opacity: 0;
 }
 
@@ -1397,11 +1432,7 @@ img {
     .title .hat {
         right: 22%;
         top: -25px;
-    }
-
-    .title .hat svg {
         width: 55px;
-        height: 66px;
     }
 
     .content .right .image {
@@ -1429,16 +1460,13 @@ img {
     .right .balloon_one {
         top: -30px;
         left: -35px;
-    }
-
-    .right .balloon_one svg, .right .balloon_two svg {
-        width: 55px;
-        height: 95px;
+        width: 75px;
     }
 
     .right .balloon_two {
         top: 100px;
         right: -30px;
+        width: 75px;
     }
 
     .camera-screen {
