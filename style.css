@@ -249,31 +249,24 @@ img {
     display: block;
 }
 
-/* ─── 🚩 Flags ───────────────────────────────────────────────────────────── */
+/* ─── 🚩 Vector Buntings / Banner ────────────────────────────────────────── */
 .flag__birthday {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    transform: translateY(-200px);
-    animation: translateYFlag 1.5s 2s forwards;
+    display: flex;
+    justify-content: center;
     pointer-events: none;
+    transform: translateY(-120px);
+    animation: translateYFlag 1.2s 1s forwards ease-out;
+}
+
+.bunting-banner {
+    width: 100%;
+    max-width: 1050px;
+    height: 70px;
 }
 
 @keyframes translateYFlag {
-    to { transform: translateY(-10px); }
-}
-
-.flag__birthday img {
-    width: clamp(120px, 20vw, 220px);
-    object-fit: contain;
-}
-
-.flag__birthday .flag__left {
-    transform: rotate(-10deg) translate(-20px, 30px);
-}
-
-.flag__birthday .flag__right {
-    transform: rotate(10deg) translate(20px, 30px) scaleX(-1);
+    to { transform: translateY(0); }
 }
 
 /* ─── Main Content ───────────────────────────────────────────────────────── */
@@ -402,7 +395,7 @@ img {
     color: var(--color-text-pink);
 }
 
-/* ─── 🎩 Hat ─────────────────────────────────────────────────────────────── */
+/* ─── 🎩 Vector Birthday Hat ─────────────────────────────────────────────── */
 .title .hat {
     position: absolute;
     right: 15%;
@@ -410,13 +403,6 @@ img {
     transform: rotate(-40deg);
     z-index: -1;
     animation: topHat 4s 7s forwards ease;
-    width: 80px;
-}
-
-.title .hat img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
 }
 
 @keyframes topHat {
@@ -593,13 +579,12 @@ img {
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
 }
 
-/* ─── 🎈 Custom Balloons ─────────────────────────────────────────────────── */
+/* ─── 🎈 Vector Balloons ─────────────────────────────────────────────────── */
 .right .balloon_one {
     position: absolute;
     top: -50px;
     left: -50px;
     animation: balloon1 2.5s infinite ease-in-out;
-    width: clamp(70px, 12vw, 110px);
 }
 
 @keyframes balloon1 {
@@ -613,7 +598,6 @@ img {
     right: -45px;
     z-index: -1;
     animation: balloon2 2.5s infinite ease-in-out;
-    width: clamp(70px, 12vw, 110px);
 }
 
 @keyframes balloon2 {
@@ -899,355 +883,150 @@ img {
     line-height: 1.4;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   📷 19th Century Antique Aesthetic Camera Album
-   ═══════════════════════════════════════════════════════════════════════════ */
-.camera-album-section {
-    width: min(94%, 440px);
-    margin: 45px auto 85px;
+/* ─── 📸 Aesthetic Polaroid Album (12 Photos) ────────────────────────────── */
+.memory-gallery {
+    width: min(92%, 400px);
+    margin: 40px auto 80px;
     text-align: center;
     position: relative;
     z-index: 7;
 }
 
-.vintage-badge {
-    background: #e9d8a6;
-    border: 2px solid #5e3023;
+.gallery-badge {
+    background: #fff;
+    border: 2px solid var(--color-black);
     border-radius: 20px;
-    padding: 3px 14px;
+    padding: 3px 12px;
     font-family: 'Sriracha', cursive;
     font-size: 0.75rem;
-    color: #5e3023;
+    color: var(--color-text-pink);
     font-weight: bold;
-    letter-spacing: 1px;
+    box-shadow: 2px 2px 0px var(--color-black);
 }
 
-.camera-heading h3 {
+.memory-gallery h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 2.3rem;
-    color: #8b4513;
+    color: #ff3d5a;
     margin: 8px 0 2px;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
-.camera-heading p {
+.gallery-sub {
     font-family: 'Sriracha', cursive;
     font-size: 0.85rem;
-    color: #6b4f4f;
-    margin-bottom: 22px;
+    color: #666;
+    margin-bottom: 20px;
 }
 
-/* ─── Camera Body Structure ─── */
-.vintage-camera-body {
+.polaroid-slider {
     position: relative;
-    width: 100%;
-    background: #3e2723; /* Dark mahogany wood */
-    border: 4px solid #271406;
-    border-radius: 22px 22px 14px 14px;
-    box-shadow: 8px 14px 0px rgba(0,0,0,0.35);
-    padding: 0 16px 18px;
+    min-height: 440px;
 }
 
-/* Top Plate (Brushed Brass Plate with Dials & Shutter) */
-.camera-top-plate {
-    height: 48px;
-    background: linear-gradient(180deg, #dfba73 0%, #b8860b 60%, #8c6200 100%);
-    border-bottom: 3px solid #5a3c00;
-    margin: 0 -16px 14px;
-    border-radius: 18px 18px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.polaroid {
+    display: none;
     position: relative;
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
+    background: #fff;
+    padding: 14px 14px 22px;
+    border-radius: 14px;
+    border: 3px solid var(--color-black);
+    box-shadow: 7px 10px 0px rgba(0,0,0,0.18);
+    transform: rotate(-1.5deg);
+    transition: all 0.3s ease;
 }
 
-.brass-knob {
-    width: 22px;
-    height: 18px;
-    background: radial-gradient(circle, #ffe6a7 0%, #b38018 100%);
-    border: 2px solid #503700;
-    border-radius: 4px 4px 0 0;
-    cursor: pointer;
-    box-shadow: 0 2px 0 #2b1d00;
+.polaroid:nth-child(even) {
+    transform: rotate(1.5deg);
 }
 
-.brass-knob:active {
-    transform: translateY(1px);
+.polaroid.active {
+    display: block;
+    animation: popAlbum 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Viewfinder */
-.viewfinder-hood {
-    width: 38px;
-    height: 22px;
-    background: #2b1d0f;
-    border: 2px solid #b8860b;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@keyframes popAlbum {
+    from { opacity: 0; transform: scale(0.92) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.glass-optic {
-    width: 28px;
-    height: 14px;
-    background: linear-gradient(135deg, #70e000 0%, #0077b6 100%);
-    border-radius: 2px;
-    opacity: 0.85;
-}
-
-/* Antique Red Shutter Button */
-.shutter-release {
-    width: 26px;
-    height: 26px;
-    background: radial-gradient(circle, #ff477e 0%, #ba181b 100%);
-    border: 2.5px solid #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 3px 0 #660708;
-    outline: none;
-    transition: transform 0.1s ease;
-}
-
-.shutter-release:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 0 #660708;
-}
-
-/* Magnesium Powder Flash Effect */
-.camera-flash-bulb {
+.polaroid .pin {
     position: absolute;
-    top: 50%;
+    top: -12px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 30px;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 100;
-    transition: opacity 0.05s ease;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    z-index: 2;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
 }
 
-.camera-flash-bulb.flash-fire {
-    opacity: 1;
-}
-
-/* Camera Wood Front with Grain texture */
-.camera-front-wood {
-    position: relative;
-    background: repeating-linear-gradient(
-        0deg,
-        #5c3a21 0px,
-        #5c3a21 8px,
-        #4e3019 9px,
-        #4e3019 16px
-    );
-    border: 3px solid #2e1708;
-    border-radius: 12px;
-    padding: 20px 14px 16px;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
-}
-
-/* Brass Corner Plates */
-.brass-bracket {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border: 4px solid #dfba73;
-    pointer-events: none;
-}
-.corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
-.corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
-.corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
-.corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
-
-/* 19th Century Bellows / Brass Lens Housing */
-.brass-lens-chassis {
-    position: relative;
-    width: min(100%, 310px);
-    margin: 0 auto;
-    background: radial-gradient(circle, #dfba73 0%, #b8860b 70%, #6e4800 100%);
-    border: 5px solid #3c2408;
-    border-radius: 20px;
-    padding: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 0 8px rgba(255,255,255,0.4);
-}
-
-.inner-lens-aperture {
-    background: #111;
-    border: 4px solid #1a1a1a;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Viewport / Photo Screen */
-.camera-screen {
-    position: relative;
+.polaroid .img-wrapper {
     width: 100%;
     height: 330px;
+    border-radius: 8px;
+    border: 2px solid #222;
     overflow: hidden;
-    cursor: pointer;
-    background: #000;
+    background-color: #f7f7f7;
 }
 
-.cam-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-}
-
-.cam-slide.active {
-    display: block;
-    animation: filmFade 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes filmFade {
-    0% {
-        opacity: 0.2;
-        filter: sepia(0.8) contrast(1.3) blur(2px);
-        transform: scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        filter: sepia(0.08) contrast(1.04) blur(0);
-        transform: scale(1);
-    }
-}
-
-.cam-slide img {
+.polaroid img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-/* Lens Glass Glare */
-.lens-glare-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.02) 40%, transparent 100%);
-    pointer-events: none;
-}
-
-/* Vintage Brass Engraved Plate */
-.brass-plaque {
-    display: inline-block;
-    background: linear-gradient(90deg, #b8860b, #ffe082, #b8860b);
-    border: 2px solid #5a3c00;
-    border-radius: 4px;
-    padding: 3px 16px;
-    margin-top: 14px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-.brass-plaque span {
-    font-family: 'Titan One', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: #2b1803;
-}
-
-/* Wooden Base Foot */
-.tripod-mount-plate {
-    width: 120px;
-    height: 8px;
-    background: #271406;
-    margin: 6px auto -18px;
-    border-radius: 0 0 6px 6px;
-    border: 2px solid #140800;
-}
-
-/* Photographic Caption Card */
-.camera-caption-card {
-    background: #fffdf7;
-    border: 2.5px solid var(--color-black);
-    border-radius: 14px;
-    padding: 10px 16px;
-    margin: 24px auto 14px;
-    box-shadow: 4px 5px 0px var(--color-black);
-}
-
-.camera-caption-card p {
+.polaroid p {
     font-family: 'Dancing Script', cursive;
     font-size: 1.45rem;
-    color: #2b1803;
+    color: #2b2b2b;
+    margin-top: 14px;
     font-weight: bold;
 }
 
-/* Camera Navigation Controls */
-.camera-controls {
+.gallery-footer {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 14px;
+    border-radius: 40px;
+    border: 2.5px solid var(--color-black);
+    box-shadow: 3px 4px 0px var(--color-black);
+}
+
+.gallery-nav button {
+    background: var(--color-text-pink);
+    color: #fff;
+    border: 2px solid var(--color-black);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-top: 6px;
-}
-
-.cam-nav-btn {
-    background: #8b4513;
-    color: #ffe6a7;
-    border: 2.5px solid var(--color-black);
-    border-radius: 30px;
-    padding: 7px 18px;
-    font-family: 'Sriracha', cursive;
-    font-size: 0.9rem;
-    font-weight: bold;
     cursor: pointer;
-    box-shadow: 2px 4px 0px var(--color-black);
-    transition: all 0.15s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 1px 2px 0px var(--color-black);
+    transition: transform 0.15s ease;
 }
 
-.cam-nav-btn:hover {
-    background: #a0522d;
-    color: #fff;
-}
-
-.cam-nav-btn:active {
-    transform: translateY(2px);
+.gallery-nav button:active {
+    transform: scale(0.9);
     box-shadow: none;
 }
 
-.film-counter-strip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #fff;
-    border: 2px solid var(--color-black);
-    border-radius: 20px;
-    padding: 5px 12px;
-    box-shadow: 2px 3px 0px var(--color-black);
-}
-
-.film-counter-strip span {
+.memory-counter {
     font-family: 'Titan One', sans-serif;
-    font-size: 0.95rem;
-    color: #8b4513;
-}
-
-/* ─── 🌸 Custom Flowers & Decor Bottom ───────────────────────────────────── */
-.decorate_flower--one, .decorate_flower--two, .decorate_flower--three {
-    position: absolute;
-    transform: scale(0);
-    animation: scaleCricle 3s var(--t, 15s) forwards ease-in-out;
-    pointer-events: none;
-}
-
-.decorate_flower--one { top: 35%; left: 5%; }
-.decorate_flower--two { top: 30%; right: 40%; }
-.decorate_flower--three { top: 20%; right: 15%; }
-
-.decorate_bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 1;
+    color: var(--color-text-pink);
+    font-size: 1rem;
+    min-width: 60px;
 }
 
 /* ─── Decorate Stars ────────────────────────────────────────────────────── */
@@ -1362,6 +1141,7 @@ img {
 
 .content__letter .left .heart {
     position: absolute;
+    font-size: 1.2rem;
     opacity: 0;
 }
 
@@ -1432,7 +1212,11 @@ img {
     .title .hat {
         right: 22%;
         top: -25px;
+    }
+
+    .title .hat svg {
         width: 55px;
+        height: 66px;
     }
 
     .content .right .image {
@@ -1460,17 +1244,16 @@ img {
     .right .balloon_one {
         top: -30px;
         left: -35px;
-        width: 75px;
+    }
+
+    .right .balloon_one svg, .right .balloon_two svg {
+        width: 55px;
+        height: 95px;
     }
 
     .right .balloon_two {
         top: 100px;
         right: -30px;
-        width: 75px;
-    }
-
-    .camera-screen {
-        height: 280px;
     }
 
     .box__letter .letter__border {
@@ -1554,14 +1337,5 @@ img {
 
     .age-box span {
         font-size: 1.15rem;
-    }
-
-    .camera-screen {
-        height: 250px;
-    }
-
-    .cam-nav-btn {
-        padding: 6px 14px;
-        font-size: 0.8rem;
     }
 }
