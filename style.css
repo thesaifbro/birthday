@@ -32,6 +32,7 @@ body {
     background-image: linear-gradient(var(--color-pink), var(--color-pink));
 }
 
+/* ─── 🔒 Step 1, 2 & 3: Overlay Gate Styling ───────────────────────────── */
 #lockScreen {
     position: fixed;
     top: 0;
@@ -154,6 +155,7 @@ body {
     40%, 80% { transform: translateX(8px); }
 }
 
+/* ─── Question Buttons ─────────────────────────────────────────────────── */
 .quiz-btn-group {
     display: flex;
     flex-direction: column;
@@ -194,6 +196,7 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* ─── Gate Timer Grid (Countdown) ───────────────────────────────────────── */
 .gate-timer-grid {
     display: flex;
     justify-content: space-between;
@@ -224,6 +227,7 @@ body {
     font-weight: bold;
 }
 
+/* ─── Main Wrapper Background ───────────────────────────────────────────── */
 #wrapper {
     position: relative;
     width: 100%;
@@ -245,32 +249,32 @@ img {
     display: block;
 }
 
+/* ─── 🚩 Vector Buntings / Banner ────────────────────────────────────────── */
 .flag__birthday {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    transform: translateY(-200px);
-    animation: translateYFlag 1.5s 2s forwards;
+    display: flex;
+    justify-content: center;
     pointer-events: none;
+    transform: translateY(-120px);
+    animation: translateYFlag 1.2s 1s forwards ease-out;
+}
+
+.bunting-banner {
+    width: 100%;
+    max-width: 1050px;
+    height: 70px;
 }
 
 @keyframes translateYFlag {
-    to { transform: translateY(-10px); }
+    to { transform: translateY(0); }
 }
 
-.flag__birthday .flag__left {
-    transform: rotate(-10deg) translate(-20px, 30px);
-}
-
-.flag__birthday .flag__right {
-    transform: rotate(10deg) translate(20px, 30px) scaleX(-1);
-}
-
+/* ─── Main Content ───────────────────────────────────────────────────────── */
 .content {
     width: 100%;
     position: relative;
     display: flex;
-    padding-top: 2rem;
+    padding-top: 1rem;
     align-items: center;
     justify-content: space-around;
 }
@@ -341,6 +345,7 @@ img {
     75% { transform: rotate(-12deg); }
 }
 
+/* ─── Title Text ─────────────────────────────────────────────────────────── */
 .title {
     position: relative;
     width: 100%;
@@ -390,6 +395,7 @@ img {
     color: var(--color-text-pink);
 }
 
+/* ─── 🎩 Vector Birthday Hat ─────────────────────────────────────────────── */
 .title .hat {
     position: absolute;
     right: 15%;
@@ -397,7 +403,6 @@ img {
     transform: rotate(-40deg);
     z-index: -1;
     animation: topHat 4s 7s forwards ease;
-    width: 80px;
 }
 
 @keyframes topHat {
@@ -412,6 +417,7 @@ img {
     }
 }
 
+/* ─── Date of Birth & Name Pill ─────────────────────────────────────────── */
 .date__of__birth, .name {
     display: flex;
     justify-content: space-around;
@@ -483,6 +489,7 @@ img {
     filter: drop-shadow(0 0 3px #ffbe0b);
 }
 
+/* ─── Profile Image Box ─────────────────────────────────────────────────── */
 .right .box__account {
     position: relative;
     transform: translateY(700px);
@@ -511,6 +518,7 @@ img {
     object-fit: cover;
 }
 
+/* ─── Circle Stamp ──────────────────────────────────────────────────────── */
 .cricle {
     position: absolute;
     top: 0;
@@ -565,18 +573,17 @@ img {
     filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
 }
 
+/* ─── 🎈 Vector Balloons ─────────────────────────────────────────────────── */
 .right .balloon_one {
     position: absolute;
     top: -50px;
     left: -50px;
-    animation: balloon1 2s infinite linear;
-    width: clamp(70px, 12vw, 110px);
+    animation: balloon1 2.5s infinite ease-in-out;
 }
 
 @keyframes balloon1 {
-    0%, 50%, 100% { transform-origin: bottom right; transform: rotate(0deg); }
-    25% { transform-origin: bottom right; transform: rotate(3deg); }
-    75% { transform-origin: bottom right; transform: rotate(-3deg); }
+    0%, 100% { transform-origin: bottom right; transform: rotate(-4deg); }
+    50% { transform-origin: bottom right; transform: rotate(5deg); }
 }
 
 .right .balloon_two {
@@ -584,17 +591,15 @@ img {
     top: 140px;
     right: -45px;
     z-index: -1;
-    transform: rotate(10deg);
-    animation: balloon2 2s infinite linear;
-    width: clamp(70px, 12vw, 110px);
+    animation: balloon2 2.5s infinite ease-in-out;
 }
 
 @keyframes balloon2 {
-    0%, 50%, 100% { transform-origin: bottom left; transform: rotate(10deg); }
-    25% { transform-origin: bottom left; transform: rotate(7deg); }
-    75% { transform-origin: bottom left; transform: rotate(13deg); }
+    0%, 100% { transform-origin: bottom left; transform: rotate(8deg); }
+    50% { transform-origin: bottom left; transform: rotate(0deg); }
 }
 
+/* ─── 🎂 Cake & Candle ──────────────────────────────────────────────────── */
 .cake-container {
     display: flex;
     flex-direction: column;
@@ -676,6 +681,74 @@ img {
     text-align: center;
 }
 
+/* ─── ⏱️ Age Calculator & Lifetime Counter ────────────────────────────── */
+.age-tracker-section {
+    width: min(92%, 460px);
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--color-black);
+    border-radius: 20px;
+    margin: 30px auto;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: 5px 6px 0px var(--color-black);
+    position: relative;
+    z-index: 7;
+}
+
+.age-tracker-section h3 {
+    font-family: 'Titan One', sans-serif;
+    color: var(--color-text-pink);
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.age-subtitle {
+    font-family: 'Sriracha', cursive;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.age-timer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.age-box {
+    background: var(--color-text-pink);
+    color: #fff;
+    border: 2px solid var(--color-black);
+    border-radius: 12px;
+    padding: 8px 10px;
+    min-width: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 3px 0px var(--color-black);
+}
+
+.age-box span {
+    font-family: 'Titan One', sans-serif;
+    font-size: 1.4rem;
+}
+
+.age-box small {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.age-quote {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.15rem;
+    color: #e63946;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* ─── 🎁 3D Mystery Gift Box Section ────────────────────────────────────── */
 .gift-section {
     display: flex;
     flex-direction: column;
@@ -804,6 +877,7 @@ img {
     line-height: 1.4;
 }
 
+/* ─── 📸 Polaroid Memory Gallery ────────────────────────────────────────── */
 .memory-gallery {
     width: min(90%, 340px);
     margin: 30px auto 70px;
@@ -881,6 +955,7 @@ img {
     box-shadow: none;
 }
 
+/* ─── Decorate Stars ────────────────────────────────────────────────────── */
 .decorate_star {
     position: absolute;
     transform: scale(0);
@@ -900,26 +975,7 @@ img {
     50% { transform: scale(1.1); }
 }
 
-.decorate_bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    max-width: 250px;
-    pointer-events: none;
-}
-
-.decorate_flower--one, .decorate_flower--two, .decorate_flower--three, .smiley__icon {
-    position: absolute;
-    transform: scale(0);
-    animation: scaleCricle 3s var(--t, 15s) forwards ease-in-out;
-    pointer-events: none;
-}
-
-.decorate_flower--one { top: 35%; left: 5%; width: 45px; }
-.decorate_flower--two { top: 30%; right: 40%; width: 40px; }
-.decorate_flower--three { top: 20%; right: 15%; width: 40px; }
-.smiley__icon { bottom: 25%; right: 45%; width: 40px; }
-
+/* ─── Letter Popup Modal ────────────────────────────────────────────────── */
 .box__letter {
     position: fixed;
     top: 0;
@@ -1032,23 +1088,10 @@ img {
     word-break: break-word;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS (Mobile & Tablet)
+   ═══════════════════════════════════════════════════════════════════════════ */
 @media screen and (max-width: 768px) {
-    .flag__birthday {
-        transform: translateY(-80px);
-    }
-    
-    .flag__birthday img {
-        width: 140px;
-    }
-
-    .flag__birthday .flag__left {
-        transform: rotate(-10deg) translate(-10px, 20px);
-    }
-
-    .flag__birthday .flag__right {
-        transform: rotate(10deg) translate(10px, 20px) scaleX(-1);
-    }
-
     .content {
         flex-direction: column-reverse;
         justify-content: center;
@@ -1075,7 +1118,11 @@ img {
     .title .hat {
         right: 22%;
         top: -25px;
+    }
+
+    .title .hat svg {
         width: 55px;
+        height: 66px;
     }
 
     .content .right .image {
@@ -1103,17 +1150,16 @@ img {
     .right .balloon_one {
         top: -30px;
         left: -35px;
-        width: 70px;
+    }
+
+    .right .balloon_one svg, .right .balloon_two svg {
+        width: 55px;
+        height: 95px;
     }
 
     .right .balloon_two {
         top: 100px;
         right: -30px;
-        width: 70px;
-    }
-
-    .decorate_bottom, .decorate_flower--two, .smiley__icon {
-        display: none;
     }
 
     .box__letter .letter__border {
@@ -1188,5 +1234,14 @@ img {
 
     .gate-timer-box span {
         font-size: 1.05rem;
+    }
+
+    .age-box {
+        min-width: 54px;
+        padding: 6px 4px;
+    }
+
+    .age-box span {
+        font-size: 1.15rem;
     }
 }
