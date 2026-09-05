@@ -901,138 +901,375 @@ img {
     line-height: 1.4;
 }
 
-/* ─── 📸 Aesthetic Memory Album (12 Photos) ─────────────────────────────── */
-.memory-gallery {
-    width: min(92%, 420px);
-    margin: 45px auto 85px;
-    text-align: center;
+/* ═══════════════════════════════════════════════════════════════════════════
+   🖼️ Aesthetic Shadow-Box Scrapbook Frame (Referenced Design)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.scrapbook-frame-container {
+    width: min(94%, 580px);
+    margin: 45px auto 80px;
     position: relative;
-    z-index: 7;
+    z-index: 8;
 }
 
-.memory-gallery h3 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.4rem;
-    color: var(--color-accent);
-    margin: 6px 0 2px;
+.frame-wood-border {
+    background: #111111;
+    border: 14px solid #1c1917;
+    border-radius: 8px;
+    box-shadow: 
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        inset 0 4px 10px rgba(0, 0, 0, 0.9),
+        inset 0 -4px 10px rgba(255, 255, 255, 0.1);
+    padding: 10px;
 }
 
-.gallery-sub {
-    font-family: 'Sriracha', cursive;
-    font-size: 0.88rem;
-    color: #666;
-    margin-bottom: 22px;
-}
-
-.polaroid-slider {
+.frame-inner-matte {
     position: relative;
-    min-height: 450px;
+    background-color: #f6efe7;
+    background-image: 
+        radial-gradient(#e7ded4 15%, transparent 16%),
+        radial-gradient(#ecdccf 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    border-radius: 4px;
+    padding: 38px 14px 20px;
+    box-shadow: inset 0 0 25px rgba(100, 70, 50, 0.25);
+    overflow: hidden;
 }
 
-.polaroid {
-    display: none;
-    position: relative;
-    background: #ffffff;
-    padding: 14px 14px 22px;
-    border-radius: 20px;
-    border: 3.5px solid var(--color-black);
-    box-shadow: 7px 10px 0px var(--color-black);
-    transform: rotate(-1.5deg);
-    transition: all 0.3s ease;
-}
-
-.polaroid:nth-child(even) {
-    transform: rotate(1.5deg);
-}
-
-.polaroid.active {
-    display: block;
-    animation: popAlbum 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes popAlbum {
-    from { opacity: 0; transform: scale(0.92) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.polaroid .pin {
+.evil-eye-charm {
     position: absolute;
-    top: -14px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.5rem;
-    z-index: 2;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
+    width: 44px;
+    height: 44px;
+    background: #003049;
+    border-radius: 50%;
+    border: 2px solid #001e2e;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
 }
 
-.polaroid .img-wrapper {
+.evil-eye-outer {
+    width: 38px;
+    height: 38px;
+    background: #023e8a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evil-eye-white {
+    width: 26px;
+    height: 26px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evil-eye-blue {
+    width: 16px;
+    height: 16px;
+    background: #48cae4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evil-eye-pupil {
+    width: 8px;
+    height: 8px;
+    background: #03045e;
+    border-radius: 50%;
+}
+
+.scrap-butterfly {
+    position: absolute;
+    top: 90px;
+    right: 12px;
+    font-size: 2rem;
+    filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.3));
+    transform: rotate(-15deg);
+    z-index: 12;
+}
+
+.scrap-flower {
+    position: absolute;
+    font-size: 1.6rem;
+    z-index: 12;
+    filter: drop-shadow(1px 3px 3px rgba(0,0,0,0.2));
+}
+
+.flower-left { top: 35px; left: 10px; }
+.flower-right { bottom: 85px; right: 10px; }
+.flower-bottom { bottom: 15px; left: 10px; }
+
+.scrapbook-sheets {
+    position: relative;
+    min-height: 520px;
+}
+
+.scrapbook-page {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.scrapbook-page.active {
+    display: flex;
+    animation: fadeInScrap 0.5s ease;
+}
+
+@keyframes fadeInScrap {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.scrap-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 5;
+}
+
+.washi-tape {
+    position: absolute;
+    background: rgba(230, 215, 185, 0.78);
+    border-left: 2px dashed rgba(160, 140, 105, 0.4);
+    border-right: 2px dashed rgba(160, 140, 105, 0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    z-index: 8;
+}
+
+.tape-top {
+    width: 50px;
+    height: 16px;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+.tape-center {
+    width: 60px;
+    height: 16px;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+}
+
+.tape-left-edge {
+    width: 35px;
+    height: 15px;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+}
+
+.tape-right-edge {
+    width: 35px;
+    height: 15px;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(15deg);
+}
+
+.scrap-card {
+    position: relative;
+    background: #ffffff;
+    padding: 6px 6px 12px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.18);
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+}
+
+.scrap-card:hover {
+    transform: scale(1.03) !important;
+    z-index: 10;
+}
+
+.tilt-left { transform: rotate(-3deg); flex: 1; }
+.tall-center { transform: rotate(1deg); flex: 1.1; }
+.tilt-right { transform: rotate(2.5deg); flex: 1; }
+
+.middle-left { transform: rotate(2deg); flex: 1; }
+.middle-center { transform: rotate(-1deg); flex: 1.05; }
+.middle-right { transform: rotate(-2.5deg); flex: 1; }
+
+.photo-box {
     width: 100%;
-    height: 330px;
-    border-radius: 12px;
-    border: 2px solid #222;
+    height: 140px;
     overflow: hidden;
-    background-color: #faf0f2;
+    border: 1px solid #ddd;
+    background: #eee;
 }
 
-.polaroid img {
+.tall-center .photo-box {
+    height: 165px;
+}
+
+.photo-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.polaroid p {
+.torn-paper {
+    background: #e8dccb;
+    border-radius: 2px;
+    padding: 5px 8px;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.15);
     font-family: 'Dancing Script', cursive;
-    font-size: 1.55rem;
-    color: #2b2024;
-    margin-top: 14px;
-    font-weight: bold;
+    color: #4a3b32;
+    line-height: 1.25;
+    position: absolute;
+    z-index: 6;
 }
 
-.gallery-footer {
-    margin-top: 20px;
+.note-top-left {
+    top: 25px;
+    left: 8px;
+    font-size: 0.85rem;
+    transform: rotate(-5deg);
+}
+
+.note-top-right {
+    top: 25px;
+    right: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transform: rotate(4deg);
+}
+
+.torn-note-caption {
+    background: #ebd8c8;
+    padding: 3px 6px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.95rem;
+    color: #3e2f28;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.kraft-ribbon-quote {
+    position: relative;
+    background: #dfcfbc;
+    border: 1px solid #caa888;
+    border-radius: 3px;
+    padding: 8px 16px;
+    text-align: center;
+    box-shadow: 1px 3px 6px rgba(0,0,0,0.12);
+    margin: 6px 20px;
+}
+
+.kraft-ribbon-quote p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b2c24;
+    margin: 0;
+}
+
+.kraft-ribbon-quote small {
+    font-family: 'Sriracha', cursive;
+    font-size: 0.78rem;
+    color: #5c473c;
+}
+
+.bottom-scrap-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 15px;
+    position: relative;
+    z-index: 6;
+}
+
+.note-bottom-left {
+    position: relative;
+    font-size: 0.95rem;
+    transform: rotate(-3deg);
+    padding: 6px 10px;
+}
+
+.happy-bday-kraft-card {
+    background: #f7d6d0;
+    border: 2px solid #e09f95;
+    border-radius: 6px;
+    padding: 8px 18px;
+    text-align: center;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+    transform: rotate(2deg);
+}
+
+.happy-bday-kraft-card h4 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #4a2828;
+    margin: 0;
+}
+
+.happy-bday-kraft-card h4 span {
+    color: #e63946;
+}
+
+.happy-bday-kraft-card p {
+    font-family: 'Titan One', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #4a2828;
+    margin-top: 2px;
+}
+
+.scrapbook-controls {
     display: flex;
     justify-content: center;
-}
-
-.gallery-nav {
-    display: inline-flex;
     align-items: center;
     gap: 14px;
-    background: #ffffff;
-    padding: 7px 18px;
-    border-radius: 40px;
-    border: 2.5px solid var(--color-black);
-    box-shadow: 3px 5px 0px var(--color-black);
+    margin-top: 18px;
 }
 
-.gallery-nav button {
-    background: var(--color-text-pink);
+.scrap-ctrl-btn {
+    background: #2b2024;
     color: #fff;
-    border: 2px solid var(--color-black);
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: 2.5px solid var(--color-black);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-family: 'Sriracha', cursive;
+    font-size: 0.9rem;
     cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: bold;
-    box-shadow: 1px 2px 0px var(--color-black);
-    transition: transform 0.15s ease;
+    box-shadow: 2px 3px 0px var(--color-black);
+    transition: all 0.2s ease;
 }
 
-.gallery-nav button:active {
-    transform: scale(0.9);
+.scrap-ctrl-btn:hover {
+    background: var(--color-accent);
+}
+
+.scrap-ctrl-btn:active {
+    transform: translateY(2px);
     box-shadow: none;
 }
 
-.memory-counter {
+.scrap-page-indicator {
     font-family: 'Titan One', sans-serif;
-    color: var(--color-text-pink);
-    font-size: 1.05rem;
-    min-width: 65px;
+    color: var(--color-black);
+    font-size: 0.95rem;
+    background: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid var(--color-black);
+    box-shadow: 2px 2px 0px var(--color-black);
 }
 
 /* ─── Letter Popup Modal ────────────────────────────────────────────────── */
@@ -1287,6 +1524,30 @@ img {
         font-size: 1.1rem;
         padding: 5px;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .frame-inner-matte {
+        padding: 34px 8px 15px;
+    }
+    .photo-box {
+        height: 105px;
+    }
+    .tall-center .photo-box {
+        height: 125px;
+    }
+    .kraft-ribbon-quote p {
+        font-size: 1.25rem;
+    }
+    .happy-bday-kraft-card h4 {
+        font-size: 1.4rem;
+    }
+    .happy-bday-kraft-card p {
+        font-size: 0.7rem;
+    }
+    .note-top-left, .note-top-right {
+        font-size: 0.75rem;
     }
 }
 
